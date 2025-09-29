@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chrome-bot</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: #111735;
+      --text: #e6e8f0;
+      --muted: #a5acc1;
+      --accent: #6c8cff;
+      --accent-2: #26d0ce;
+    }
+    body { margin: 0; font-family: ui-sans-serif, system-ui, Segoe UI, Roboto, Arial; background: linear-gradient(180deg, var(--bg), #0f1630 60%); color: var(--text); }
+    .wrap { display: flex; flex-direction: column; height: 100vh; width: 380px; }
+    header { padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,.06); }
+    header .brand { font-weight: 600; letter-spacing: .3px; }
+    header .actions { display: flex; gap: 8px; }
+    header .icon-btn { background: transparent; color: var(--muted); border: 1px solid rgba(255,255,255,.12); border-radius: 6px; padding: 6px 8px; cursor: pointer; font-size: 12px; }
+    .chat { flex: 1; overflow: auto; padding: 12px; }
+    .msg { margin: 10px 0; padding: 10px 12px; border-radius: 10px; max-width: 92%; box-shadow: 0 6px 24px rgba(0,0,0,.25); white-space: pre-wrap; }
+    .user { background: linear-gradient(135deg, #1e2748, #1a2344); align-self: flex-end; border-top-right-radius: 4px; }
+    .assistant { background: linear-gradient(135deg, var(--card), #121b3c); border-top-left-radius: 4px; }
+    .assistant.external { color: #ffd54a; }
+    .meta { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+    .chat a { color: #8ab4ff; text-decoration: underline; word-break: break-all; }
+    .chat a:hover { text-decoration: none; }
+    .composer { padding: 10px; border-top: 1px solid rgba(255,255,255,.06); display: flex; gap: 8px; }
+    .composer textarea { flex: 1; background: #0e1430; color: var(--text); border: 1px solid rgba(255,255,255,.08); border-radius: 8px; padding: 10px; outline: none; min-height: 52px; max-height: 180px; resize: vertical; }
+    .composer button { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #0a0f22; border: none; border-radius: 8px; padding: 10px 14px; font-weight: 600; cursor: pointer; }
+    .composer button:disabled { filter: grayscale(0.6); opacity: 0.6; cursor: default; }
+  </style>
+  <script defer src="sidepanel.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">Chrome-bot</div>
+      <div class="actions">
+        <button id="copyBtn" class="icon-btn" title="Скопировать чат">Копировать</button>
+      </div>
+    </header>
+    <div id="chat" class="chat"></div>
+    <div class="composer">
+      <textarea id="chatInput" placeholder="Спросите ИИ… (Shift+Enter — новая строка)" ></textarea>
+      <button id="sendBtn">Отправить</button>
+    </div>
+  </div>
+</body>
+</html>
+
+
